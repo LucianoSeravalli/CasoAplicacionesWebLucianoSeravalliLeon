@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="general/fragmentos_general :: head"></head>
+    <body>
+
+        <div th:replace="general/fragmentos_general :: navbar"></div>
+        <div th:replace="general/fragmentos_general :: mensajes"></div>
+
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Servicios</h2>
+                <a class="btn btn-primary" th:href="@{/servicios/nuevo}">
+                    <i class="fa-solid fa-plus"></i> Nuevo Servicio
+                </a>
+            </div>
+
+            <hr>
+
+            <table class="table table-striped table-hover mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Categoría</th>
+                        <th style="width: 180px;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${servicios}">
+                        <td th:text="${s.idServicio}"></td>
+                        <td th:text="${s.nombre}"></td>
+                        <td th:text="${#numbers.formatDecimal(s.precio, 1, 'COMMA', 2, 'POINT')}"></td>
+                        <td th:text="${s.categoria.nombre}"></td>
+                        <td>
+                            <a class="btn btn-warning btn-sm"
+                               th:href="@{/servicios/editar(idServicio=${s.idServicio})}">
+                                <i class="fa-solid fa-pen"></i> Editar
+                            </a>
+
+                            <form th:action="@{/servicios/eliminar}" method="post" style="display:inline;">
+                                <input type="hidden" name="idServicio" th:value="${s.idServicio}" />
+                                <button class="btn btn-danger btn-sm" type="submit"
+                                        onclick="return confirm('¿Eliminar este servicio?');">
+                                    <i class="fa-solid fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <tr th:if="${#lists.isEmpty(servicios)}">
+                        <td colspan="5" class="text-center">No hay servicios registrados.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:replace="general/fragmentos_general :: footer"></div>
+    </body>
+</html>

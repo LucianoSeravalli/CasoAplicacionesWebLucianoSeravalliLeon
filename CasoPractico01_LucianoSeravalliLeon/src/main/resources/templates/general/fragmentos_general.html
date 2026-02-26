@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!-- ================= HEAD ================= -->
+    <head th:fragment="head">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Salón Belleza</title>
+
+        <!-- Bootstrap 5.3.8 -->
+        <link rel="stylesheet"
+              th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}" />
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+              th:href="@{/webjars/font-awesome/7.0.0/css/all.min.css}" />
+
+        <!-- CSS Personalizado -->
+        <link rel="stylesheet"
+              th:href="@{/css/estilos.css}" />
+    </head>
+
+
+    <body>
+
+        <!-- ================= HEADER / NAVBAR ================= -->
+        <nav class="navbar navbar-expand-lg navbar-dark custom-header"
+             th:fragment="navbar">
+
+            <div class="container">
+
+                <!-- Logo -->
+                <a class="navbar-brand fw-bold fs-3" th:href="@{/}">
+                    Salón Belleza
+                </a>
+
+                <!-- Botón responsive -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menú -->
+                <div class="collapse navbar-collapse justify-content-end"
+                     id="navbarNav">
+
+                    <ul class="navbar-nav align-items-center">
+
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" th:href="@{/contacto}">
+                                <i class="fa-solid fa-envelope"></i> Contacto
+                            </a>
+                        </li>
+
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" th:href="@{/categorias/listado}">
+                                Categorías
+                            </a>
+                        </li>
+
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" th:href="@{/servicios/listado}">
+                                Servicios
+                            </a>
+                        </li>
+
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" th:href="@{/reservas/listado}">
+                                Reservas
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- ================= MENSAJES FLASH ================= -->
+        <div class="container mt-3"
+             th:fragment="mensajes">
+
+            <div th:if="${exito}"
+                 class="alert alert-success alert-dismissible fade show"
+                 role="alert">
+                <span th:text="${exito}"></span>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"></button>
+            </div>
+
+            <div th:if="${error}"
+                 class="alert alert-danger alert-dismissible fade show"
+                 role="alert">
+                <span th:text="${error}"></span>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"></button>
+            </div>
+        </div>
+
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="custom-footer text-white mt-5"
+                th:fragment="footer">
+
+            <div class="container py-5">
+
+                <div class="row">
+
+                    <!-- Marca -->
+                    <div class="col-md-4 mb-4">
+                        <h3 class="fw-bold">Salón Belleza</h3>
+                        <p>
+                            Tu espacio ideal para el cuidado personal.
+                            Ofrecemos servicios profesionales con calidad y dedicación.
+                        </p>
+                    </div>
+
+                    <!-- Enlaces -->
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold">Servicios</h5>
+                        <ul class="list-unstyled">
+                            <li><a th:href="@{/servicios/listado}" class="footer-link">Cortes</a></li>
+                            <li><a th:href="@{/servicios/listado}" class="footer-link">Manicura</a></li>
+                            <li><a th:href="@{/servicios/listado}" class="footer-link">Tratamientos</a></li>
+                            <li><a th:href="@{/reservas/listado}" class="footer-link">Reservar</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contacto -->
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold">Contáctanos</h5>
+                        <p class="mb-1">📍 San José, Costa Rica</p>
+                        <p class="mb-1">📞 +506 8888 8888</p>
+                        <p class="mb-1">✉ salonbelleza@gmail.com</p>
+                        <p>Instagram: @salonbelleza</p>
+                    </div>
+
+                </div>
+
+                <hr class="border-light">
+
+                <div class="text-center">
+                    © 2026 Salón Belleza | Proyecto Caso Práctico
+                </div>
+
+            </div>
+
+            <!-- Bootstrap JS -->
+            <script th:src="@{/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js}"></script>
+        </footer>
+
+    </body>
+</html>

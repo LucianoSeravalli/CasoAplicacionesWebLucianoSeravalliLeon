@@ -1,0 +1,82 @@
+/* =======================
+   ESTILO GENERAL PROYECTO
+   ======================= */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar personalizada */
+.navbar {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: #343a40;
+}
+
+/* Botones personalizados */
+.btn-primary {
+    background-color: #6a11cb;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #4b0fa8;
+}
+
+/* Footer */
+footer {
+    background-color: #212529;
+    color: white;
+}
+
+/* ================= HEADER ================= */
+
+.custom-header {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.custom-header .nav-link {
+    color: white !important;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.custom-header .nav-link:hover {
+    text-decoration: underline;
+}
+
+/* ================= FOOTER ================= */
+
+.custom-footer {
+    background-color: #1f1f1f;
+}
+
+.footer-link {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: white;
+    text-decoration: underline;
+}

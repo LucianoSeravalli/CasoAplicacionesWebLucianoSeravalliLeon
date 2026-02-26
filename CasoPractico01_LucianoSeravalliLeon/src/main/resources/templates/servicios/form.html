@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="general/fragmentos_general :: head"></head>
+    <body>
+
+        <div th:replace="general/fragmentos_general :: navbar"></div>
+        <div th:replace="general/fragmentos_general :: mensajes"></div>
+
+        <div class="container mt-4 mb-5">
+
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+
+                    <div class="card shadow border-0">
+                        <div class="card-body p-4">
+
+                            <h2 class="mb-3"
+                                th:text="${servicio.idServicio == null ? 'Nuevo Servicio' : 'Editar Servicio'}">
+                            </h2>
+
+                            <form th:action="@{/servicios/guardar}"
+                                  method="post"
+                                  th:object="${servicio}">
+
+                                <!-- ID oculto (para edición) -->
+                                <input type="hidden" th:field="*{idServicio}" />
+
+                                <!-- Nombre -->
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre del Servicio</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           th:field="*{nombre}"
+                                           placeholder="Ej: Corte Profesional"
+                                           maxlength="50"
+                                           required>
+                                </div>
+
+                                <!-- Precio -->
+                                <div class="mb-3">
+                                    <label class="form-label">Precio</label>
+                                    <input type="number"
+                                           class="form-control"
+                                           th:field="*{precio}"
+                                           step="0.01"
+                                           min="0"
+                                           placeholder="Ej: 15000"
+                                           required>
+                                </div>
+
+                                <!-- Categoría (IMPORTANTE: enviar solo idCategoria) -->
+                                <div class="mb-3">
+                                    <label class="form-label">Categoría</label>
+                                    <select class="form-select"
+                                            name="idCategoria"
+                                            required>
+
+                                        <option value=""
+                                                disabled
+                                                th:selected="${idCategoriaSeleccionada == null}">
+                                            -- Seleccione una categoría --
+                                        </option>
+
+                                        <option th:each="c : ${categorias}"
+                                                th:value="${c.idCategoria}"
+                                                th:text="${c.nombre}"
+                                                th:selected="${idCategoriaSeleccionada != null and c.idCategoria == idCategoriaSeleccionada}">
+                                        </option>
+
+                                    </select>
+                                </div>
+
+                                <!-- Botones -->
+                                <div class="d-flex justify-content-between">
+
+                                    <a class="btn btn-secondary"
+                                       th:href="@{/servicios/listado}">
+                                        Cancelar
+                                    </a>
+
+                                    <button type="submit"
+                                            class="btn btn-primary">
+                                        <i class="fa-solid fa-floppy-disk"></i>
+                                        Guardar
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div th:replace="general/fragmentos_general :: footer"></div>
+
+    </body>
+</html>

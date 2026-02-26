@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="general/fragmentos_general :: head"></head>
+    <body>
+
+        <div th:replace="general/fragmentos_general :: navbar"></div>
+        <div th:replace="general/fragmentos_general :: mensajes"></div>
+
+        <!-- ================= HERO SECTION ================= -->
+        <div class="container-fluid bg-light py-5 text-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Bienvenido al Salón de Belleza</h1>
+                <p class="lead">
+                    Donde tu estilo y bienestar son nuestra prioridad.
+                </p>
+                <a class="btn btn-primary btn-lg mt-3" th:href="@{/reservas/nuevo}">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    Reservar Ahora
+                </a>
+            </div>
+        </div>
+
+        <!-- ================= PROMOCIÓN ================= -->
+        <div class="container mt-5">
+            <div class="card shadow-lg border-0">
+                <div class="card-body text-center">
+                    <h3 class="card-title text-primary">🎉 Promoción Especial del Mes</h3>
+                    <p class="card-text">
+                        20% de descuento en todos los tratamientos faciales. ¡Agenda tu cita hoy!
+                    </p>
+                    <a th:href="@{/servicios/listado}" class="btn btn-outline-primary">
+                        Ver Servicios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIDEO (REQUISITO EXAMEN) ================= -->
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Video de Belleza</h2>
+            <div class="card shadow border-0">
+                <div class="card-body">
+                    <div class="ratio ratio-16x9">
+                        <!-- Puedes cambiar el ID del video si te piden otro -->
+                        <iframe
+                            src="https://www.youtube.com/embed/6v2L2UGZJAM"
+                            title="Video de Belleza"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="text-muted mt-3 mb-0">
+                        Tips y tendencias para el cuidado personal.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SERVICIOS DESTACADOS ================= -->
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Nuestros Servicios</h2>
+
+            <div class="row">
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-scissors fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Corte Profesional</h5>
+                            <p class="card-text">
+                                Estilo moderno y personalizado para cada cliente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-hand-sparkles fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Manicura & Pedicura</h5>
+                            <p class="card-text">
+                                Cuidado y belleza para tus manos y pies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <i class="fa-solid fa-spa fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Tratamientos Faciales</h5>
+                            <p class="card-text">
+                                Rejuvenece tu piel con tratamientos especializados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= OPINIONES (FORM BREVE) ================= -->
+        <div class="container mt-5 mb-5">
+            <h2 class="text-center mb-4">Tu Opinión Nos Importa</h2>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow border-0">
+                        <div class="card-body p-4">
+
+                            <form th:action="@{/opiniones/enviar}" method="post">
+                                <div class="row g-3">
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nombre</label>
+                                        <input type="text" name="nombre" class="form-control"
+                                               placeholder="Tu nombre" required>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label class="form-label">Calificación</label>
+                                        <select name="calificacion" class="form-select" required>
+                                            <option value="" disabled selected>Seleccione...</option>
+                                            <option value="5">(5/5) Excelente</option>
+                                            <option value="4">(4/5) Muy bueno</option>
+                                            <option value="3">(3/5) Bueno</option>
+                                            <option value="2">(2/5) Regular</option>
+                                            <option value="1">(1/5) Malo</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label class="form-label">Comentario</label>
+                                        <textarea name="comentario" class="form-control" rows="3"
+                                                  placeholder="Escribe tu opinión..." required></textarea>
+                                    </div>
+
+                                    <div class="col-12 d-grid">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fa-solid fa-star"></i> Enviar Opinión
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="general/fragmentos_general :: footer"></div>
+
+    </body>
+</html>

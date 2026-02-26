@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="general/fragmentos_general :: head"></head>
+    <body>
+
+        <div th:replace="general/fragmentos_general :: navbar"></div>
+        <div th:replace="general/fragmentos_general :: mensajes"></div>
+
+        <div class="container mt-4 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+
+                    <div class="card shadow border-0">
+                        <div class="card-body p-4">
+
+                            <h2 class="mb-3"
+                                th:text="${reserva.idReserva == null ? 'Nueva Reserva' : 'Editar Reserva'}">
+                            </h2>
+
+                            <form th:action="@{/reservas/guardar}"
+                                  method="post"
+                                  th:object="${reserva}">
+
+                                <!-- ID oculto para edición -->
+                                <input type="hidden" th:field="*{idReserva}" />
+
+                                <!-- Nombre cliente -->
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre del Cliente</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           th:field="*{nombreCliente}"
+                                           maxlength="50"
+                                           placeholder="Ej: Ana López"
+                                           required>
+                                </div>
+
+                                <!-- Fecha -->
+                                <div class="mb-3">
+                                    <label class="form-label">Fecha</label>
+                                    <input type="date"
+                                           class="form-control"
+                                           th:field="*{fecha}"
+                                           required>
+                                </div>
+
+                                <!-- Servicio (IMPORTANTE: enviar solo idServicio) -->
+                                <div class="mb-3">
+                                    <label class="form-label">Servicio</label>
+                                    <select class="form-select"
+                                            name="idServicio"
+                                            required>
+
+                                        <option value=""
+                                                disabled
+                                                th:selected="${idServicioSeleccionado == null}">
+                                            -- Seleccione un servicio --
+                                        </option>
+
+                                        <option th:each="s : ${servicios}"
+                                                th:value="${s.idServicio}"
+                                                th:text="${s.nombre}"
+                                                th:selected="${idServicioSeleccionado != null and s.idServicio == idServicioSeleccionado}">
+                                        </option>
+
+                                    </select>
+                                </div>
+
+                                <!-- Botones -->
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-secondary"
+                                       th:href="@{/reservas/listado}">
+                                        Cancelar
+                                    </a>
+
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa-solid fa-floppy-disk"></i> Guardar
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="general/fragmentos_general :: footer"></div>
+
+    </body>
+</html>
